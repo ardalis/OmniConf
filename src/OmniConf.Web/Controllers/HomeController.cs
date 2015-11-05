@@ -5,21 +5,24 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using OmniConf.Core.Interfaces;
 using OmniConf.Web.ViewModels.Home;
+using Microsoft.Framework.OptionsModel;
 
 namespace OmniConf.Web.Controllers
 {
     public class HomeController : Controller
     {
         private readonly IConferenceRepository _conferenceRepository;
-        public HomeController(IConferenceRepository conferenceRepository)
+        private readonly ISiteSettings _settings;
+        public HomeController(IConferenceRepository conferenceRepository,
+            IOptions<SiteSettings> siteSettingsAccessor)
         {
             _conferenceRepository = conferenceRepository;
+            _settings = siteSettingsAccessor.Value;
         }
         public IActionResult Index()
         {
             var conference = _conferenceRepository
-                .List()
-                .FirstOrDefault();
+                .GetById(_settings.SiteConferenceId);
             if(conference == null)
             {
                 throw new Exception("No conference found");

@@ -11,5 +11,6 @@ namespace OmniConf.Core.Model
         public DateTime ConferenceEnd { get; set; }
 
         public bool IsSoldOut { get; set; }
+        public bool IsActive { get; set; }
     }
 }

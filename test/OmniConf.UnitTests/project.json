@@ -1,0 +1,19 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "OmniConf.UnitTests Class Library",
+  "authors": [ "stevesmith" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+  "dependencies": {
+    "OmniConf.Core": "1.0.0-*",
+    "xunit.runner.aspnet": "2.0.0-aspnet-beta8",
+    "Moq": "4.2.1408.0511"
+  },
+  "commands": {
+    "test": "xunit.runner.aspnet"
+  },
+  "frameworks": {
+    "dnx451": { }
+  }
+}
