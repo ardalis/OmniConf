@@ -19,6 +19,8 @@ using OmniConf.Web.Services;
 using OmniConf.Infrastructure.Data;
 using OmniConf.Infrastructure.Identity;
 using OmniConf.Core.Interfaces;
+using OmniConf.Core.Services;
+using OmniConf.Web.Middleware;
 
 namespace OmniConf.Web
 {
@@ -77,11 +79,15 @@ namespace OmniConf.Web
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
             services.AddTransient<IConferenceRepository, ConferenceRepository>();
+            services.AddTransient<IConferenceSelector, ConferenceSelectorService>();
             services.AddTransient<SeedData>();
         }
 
         // Configure is called after ConfigureServices is called.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, SeedData seedData)
+        public void Configure(IApplicationBuilder app, 
+            IHostingEnvironment env, 
+            ILoggerFactory loggerFactory, 
+            SeedData seedData)
         {
             loggerFactory.MinimumLevel = LogLevel.Information;
             loggerFactory.AddConsole();
@@ -110,8 +116,18 @@ namespace OmniConf.Web
             // Add static files to the request pipeline.
             app.UseStaticFiles();
 
+            // Deteremine the current conference and store in Context.Items
+            app.UseCurrentConferenceMiddleware();
+
             // Add cookie-based authentication to the request pipeline.
             app.UseIdentity();
+
+            app.Use(async (context, next) =>
+            {
+
+                await next.Invoke();
+            }
+            );
 
             // Add and configure the options for authentication middleware to the request pipeline.
             // You can add options for middleware as shown below.

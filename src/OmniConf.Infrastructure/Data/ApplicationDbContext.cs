@@ -8,6 +8,8 @@ namespace OmniConf.Infrastructure.Data
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Conference> Conferences { get; set; }
+        public DbSet<Session> Sessions { get; set; }
+        public DbSet<Speaker> Speakers { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

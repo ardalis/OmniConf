@@ -12,5 +12,7 @@ namespace OmniConf.Core.Model
 
         public bool IsSoldOut { get; set; }
         public bool IsActive { get; set; }
+
+        public decimal StandardPrice { get; set; }
     }
 }

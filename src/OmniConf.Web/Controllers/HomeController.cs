@@ -21,8 +21,9 @@ namespace OmniConf.Web.Controllers
         }
         public IActionResult Index()
         {
+            var confId = (int)HttpContext.Items[SiteConstants.CurrentConferenceKey];
             var conference = _conferenceRepository
-                .GetById(_settings.SiteConferenceId);
+                .GetById(confId);
             if(conference == null)
             {
                 throw new Exception("No conference found");
@@ -37,14 +38,14 @@ namespace OmniConf.Web.Controllers
             return View(viewmodel);
         }
 
-        public IActionResult About()
+        public IActionResult Sessions()
         {
             ViewData["Message"] = "Your application description page.";
 
             return View();
         }
 
-        public IActionResult Contact()
+        public IActionResult Speakers()
         {
             ViewData["Message"] = "Your contact page.";
 
