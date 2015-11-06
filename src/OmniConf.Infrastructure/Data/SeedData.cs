@@ -1,8 +1,7 @@
 ﻿using OmniConf.Core.Model;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using GenFu;
 
 namespace OmniConf.Infrastructure.Data
 {
@@ -37,13 +36,14 @@ namespace OmniConf.Infrastructure.Data
 
         private void SeedSpeakers()
         {
-            _dbContext.Speakers.Add(new Speaker()
-            {
-                FirstName = "Steve",
-                LastName = "Smith",
-                Bio = "Steve is a software craftsman, mentor, speaker, and trainer.",
-                ImageFile="SteveSmith.jpg"
-            });
+            A.Configure<BaseEntity>()
+                .Fill(s => s.Id, () => 0);
+            A.Configure<Speaker>()
+                .Fill(s => s.ImageFile).AsFirstName();
+            
+            var speakers = A.ListOf<Speaker>(40);
+            _dbContext.AddRange(speakers);
+
             _dbContext.SaveChanges();
         }
 

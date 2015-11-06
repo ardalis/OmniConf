@@ -1,30 +1,13 @@
-﻿using OmniConf.Core.Interfaces;
-using System.Linq;
-using OmniConf.Core.Model;
-using System.Collections.Generic;
+﻿using OmniConf.Core.Model;
 using Microsoft.Framework.Logging;
 
 namespace OmniConf.Infrastructure.Data
 {
-    public class ConferenceRepository : IConferenceRepository
+    public class ConferenceRepository : Repository<Conference>
     {
-        private readonly ApplicationDbContext _dbContext;
-        private readonly ILogger<ConferenceRepository> _logger;
         public ConferenceRepository(ApplicationDbContext dbContext,
-            ILogger<ConferenceRepository> logger)
+            ILogger<ConferenceRepository> logger) : base(dbContext,logger)
         {
-            _dbContext = dbContext;
-            _logger = logger;
-        }
-        public Conference GetById(int id)
-        {
-            _logger.LogInformation($"{nameof(GetById)}({id}) called.");
-            return _dbContext.Conferences.FirstOrDefault(c => c.Id == id);
-        }
-        public IEnumerable<Conference> List()
-        {
-            _logger.LogInformation($"{nameof(List)}() called.");
-            return _dbContext.Conferences.AsEnumerable();
         }
     }
 }
