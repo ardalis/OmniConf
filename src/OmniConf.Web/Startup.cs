@@ -21,6 +21,7 @@ using OmniConf.Infrastructure.Identity;
 using OmniConf.Core.Interfaces;
 using OmniConf.Core.Services;
 using OmniConf.Web.Middleware;
+using OmniConf.Infrastructure.Caching;
 
 namespace OmniConf.Web
 {
@@ -78,9 +79,11 @@ namespace OmniConf.Web
             // Register application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
-            services.AddTransient<IConferenceRepository, ConferenceRepository>();
+            services.AddTransient<ConferenceRepository>();
+            services.AddTransient<IConferenceRepository, CachedConferenceRepository>();
             services.AddTransient<IConferenceSelector, ConferenceSelectorService>();
             services.AddTransient<SeedData>();
+            services.AddTransient<Cacher>();
         }
 
         // Configure is called after ConfigureServices is called.
