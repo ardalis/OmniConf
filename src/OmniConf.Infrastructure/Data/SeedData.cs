@@ -14,6 +14,9 @@ namespace OmniConf.Infrastructure.Data
         }
         public void SeedAll()
         {
+            A.Configure<BaseEntity>()
+    .Fill(s => s.Id, () => 0);
+
             SeedConferences();
             SeedSpeakers();
             SeedSessions();
@@ -21,23 +24,14 @@ namespace OmniConf.Infrastructure.Data
 
         private void SeedSessions()
         {
-            _dbContext.Sessions.Add(new Session()
-            {
-                Title = "Getting Started with ASP.NET 5",
-                Description = "A talk about what's new in ASP.NET 5 and how to get started building applications using this new framework."
-            });
-            _dbContext.Sessions.Add(new Session()
-            {
-                Title = "Improving the Design of Existing Software",
-                Description = "Software tends to suffer from bit rot over time, sometimes collapsing the weight of hacks, spaghetti code, and big ball of mud architecture. Learn how to incrementally improve your application's quality, reversing the trend and saving your project from declaring technical bankruptcy."
-            });
+            var sessions = A.ListOf<Session>(40);
+            _dbContext.AddRange(sessions);
+            
             _dbContext.SaveChanges();
         }
 
         private void SeedSpeakers()
         {
-            A.Configure<BaseEntity>()
-                .Fill(s => s.Id, () => 0);
             A.Configure<Speaker>()
                 .Fill(s => s.ImageFile).AsFirstName();
             

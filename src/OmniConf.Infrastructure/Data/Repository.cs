@@ -9,8 +9,8 @@ namespace OmniConf.Infrastructure.Data
 {
     public class Repository<T> : IRepository<T> where T:BaseEntity
     {
-        private readonly ApplicationDbContext _dbContext;
-        private readonly ILogger<Repository<T>> _logger;
+        protected readonly ApplicationDbContext _dbContext;
+        protected readonly ILogger<Repository<T>> _logger;
         public Repository(ApplicationDbContext dbContext,
             ILogger<Repository<T>> logger)
         {

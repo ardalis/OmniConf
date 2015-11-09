@@ -51,6 +51,5 @@ namespace OmniConf.Infrastructure.Caching
 
             return value;
         }
-
     }
 }

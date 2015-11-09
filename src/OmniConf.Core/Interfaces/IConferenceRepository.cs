@@ -3,9 +3,7 @@ using System.Collections.Generic;
 
 namespace OmniConf.Core.Interfaces
 {
-    public interface IConferenceRepository
+    public interface IConferenceRepository : IRepository<Conference>
     {
-        Conference GetById(int id);
-        IEnumerable<Conference> List();
     }
 }

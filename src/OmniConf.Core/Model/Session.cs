@@ -9,5 +9,7 @@ namespace OmniConf.Core.Model
     {
         public string Title { get; set; }
         public string Description { get; set; }
+
+        public int ConferenceId { get; set; }
     }
 }

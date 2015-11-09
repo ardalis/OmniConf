@@ -1,5 +1,9 @@
 ﻿using OmniConf.Core.Model;
 using Microsoft.Framework.Logging;
+using OmniConf.Core.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace OmniConf.Infrastructure.Data
 {

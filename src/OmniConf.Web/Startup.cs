@@ -81,6 +81,8 @@ namespace OmniConf.Web
             services.AddTransient<ISmsSender, AuthMessageSender>();
             services.AddTransient<ConferenceRepository>();
             services.AddTransient<IConferenceRepository, CachedConferenceRepository>();
+            services.AddTransient<SessionRepository>();
+            services.AddTransient<ISessionRepository, SessionRepository>();
             services.AddTransient<IConferenceSelector, ConferenceSelectorService>();
             services.AddTransient<SeedData>();
             services.AddTransient<Cacher>();
