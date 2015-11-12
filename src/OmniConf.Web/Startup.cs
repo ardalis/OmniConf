@@ -22,6 +22,7 @@ using OmniConf.Core.Interfaces;
 using OmniConf.Core.Services;
 using OmniConf.Web.Middleware;
 using OmniConf.Infrastructure.Caching;
+using Cachify;
 
 namespace OmniConf.Web
 {
@@ -94,8 +95,8 @@ namespace OmniConf.Web
             ILoggerFactory loggerFactory, 
             SeedData seedData)
         {
-            loggerFactory.MinimumLevel = LogLevel.Information;
-            loggerFactory.AddConsole();
+            loggerFactory.MinimumLevel = LogLevel.Debug;
+            loggerFactory.AddConsole(LogLevel.Debug);
             loggerFactory.AddDebug();
 
             // Configure the HTTP request pipeline.

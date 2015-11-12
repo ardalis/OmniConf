@@ -7,13 +7,17 @@
   "licenseUrl": "",
   "dependencies": {
     "OmniConf.Core": "1.0.0-*",
-    "xunit.runner.aspnet": "2.0.0-aspnet-beta8",
-    "Moq": "4.2.1408.0511"
+    "xunit": "2.1.0-*",
+    "xunit.runner.dnx": "2.1.0-*"
   },
   "commands": {
     "test": "xunit.runner.aspnet"
   },
   "frameworks": {
-    "dnx451": { }
+    "dnx451": {
+      "dependencies": {
+        "Moq": "4.2.1510.2205"
+      }
+    }
   }
 }

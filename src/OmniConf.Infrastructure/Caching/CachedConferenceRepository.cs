@@ -3,13 +3,7 @@ using System.Collections.Generic;
 using OmniConf.Core.Model;
 using OmniConf.Infrastructure.Data;
 using Microsoft.Framework.Logging;
-using Microsoft.Framework.Caching.Memory;
-using System.Linq;
-using System;
-using System.Linq.Expressions;
-using System.Runtime.CompilerServices;
-using System.Reflection;
-using System.Text;
+using Cachify;
 
 namespace OmniConf.Infrastructure.Caching
 {
