@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using OmniConf.Core.Interfaces;
-using OmniConf.Web.ViewModels.Home;
-using Microsoft.Framework.OptionsModel;
+using Microsoft.Extensions.OptionsModel;
 using OmniConf.Web.ViewModels.Sessions;
 
 namespace OmniConf.Web.Controllers
